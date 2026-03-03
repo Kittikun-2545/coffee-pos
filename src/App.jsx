@@ -53,7 +53,6 @@ function App() {
     setOrders(orders.filter((o) => o.id !== id));
   };
 
-  // 🔥 เปิด Modal
   const handleEdit = (order) => {
     setEditingOrder(order);
     setEditMenu(order.menu);
@@ -61,7 +60,6 @@ function App() {
     setIsModalOpen(true);
   };
 
-  // 🔥 บันทึกการแก้ไข
   const handleSaveEdit = async () => {
     const newPrice = menuOptions[editMenu];
     const newTotal = newPrice * editQuantity;
@@ -104,14 +102,11 @@ function App() {
       status: "Pending",
     };
 
-    const res = await fetch(
-      "http://localhost:3001/orders",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newOrder),
-      }
-    );
+    const res = await fetch("http://localhost:3001/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newOrder),
+    });
 
     const data = await res.json();
     setOrders([...orders, data]);
@@ -139,8 +134,17 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Coffee POS Dashboard</h1>
 
+      {/* ===== Premium Header ===== */}
+      <div className="header">
+        <div className="logo-section">
+          <img src="/logo-80.png" alt="logo" className="logo" />
+          <h1>Coffee POS</h1>
+        </div>
+        <div className="header-line"></div>
+      </div>
+
+      {/* ===== Dashboard Cards ===== */}
       <div className="cards">
         <SummaryCard title="Total Orders" value={orders.length} />
         <SummaryCard
@@ -153,6 +157,7 @@ function App() {
         />
       </div>
 
+      {/* ===== Create Form ===== */}
       <form className="form" onSubmit={handleCreate}>
         <input
           placeholder="Customer name"
@@ -187,6 +192,7 @@ function App() {
         <button type="submit">Create</button>
       </form>
 
+      {/* ===== Controls ===== */}
       <div className="controls">
         <input
           placeholder="Search customer..."
@@ -204,6 +210,7 @@ function App() {
         </select>
       </div>
 
+      {/* ===== Orders Table ===== */}
       <OrdersTable
         orders={filteredOrders}
         toggleStatus={toggleStatus}
@@ -211,7 +218,7 @@ function App() {
         handleEdit={handleEdit}
       />
 
-      {/* 🔥 Modal */}
+      {/* ===== Modal ===== */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal">

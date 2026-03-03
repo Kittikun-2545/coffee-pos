@@ -1,3 +1,6 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
 * {
   box-sizing: border-box;
 }
@@ -21,7 +24,12 @@ html, body {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
+    url("/coffee-20.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: white;
 }
 
@@ -46,12 +54,20 @@ body {
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 .card h3 {
   margin: 0;
   font-size: 18px;
   opacity: 0.8;
+  letter-spacing: 1px;
 }
 
 .card h2 {
@@ -74,12 +90,24 @@ select {
 }
 
 button {
-  padding: 8px 14px;
-  border-radius: 8px;
+  background: #3e2723;
+  color: white;
   border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: #5d4037;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: scale(0.97);
 }
 
 button:hover {
@@ -90,9 +118,10 @@ button:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 th,
@@ -145,4 +174,76 @@ tr:nth-child(even) {
   border-radius: 15px;
   width: 300px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+/* ===== Premium Header ===== */
+.header {
+  padding: 20px 40px 10px 40px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #d4a373;
+  text-shadow: 0 0 10px rgba(212,163,115,0.4);
+}
+
+.header-line {
+  margin-top: 15px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, #d4a373, transparent);
+}
+
+/* ทำให้ dashboard ห่างจาก header */
+.cards {
+  margin-top: 30px;
+}
+.container {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+
+  .cards {
+    flex-direction: column;
+  }
+
+  .form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
 }
